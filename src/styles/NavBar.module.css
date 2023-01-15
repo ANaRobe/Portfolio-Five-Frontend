@@ -1,0 +1,8 @@
+.NavBar {
+    background-color: rgb(255, 255, 253);
+    border: 1px solid gray;
+}
+
+.NavLink {
+    padding: 5px;
+}
