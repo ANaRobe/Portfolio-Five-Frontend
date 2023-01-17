@@ -1,5 +1,7 @@
 import React, {useState} from "react";
-import { Form, Button }  from "react-bootstrap";
+import { Form, Button , Alert}  from "react-bootstrap";
+import axios from "axios";
+
 
 
 const SignUpForm = () => {
@@ -21,23 +23,43 @@ const SignUpForm = () => {
         [e.target.name]: e.target.value, // key = input field name, value = user's input
       });
     };
-  return (
+
+    /* 
+        Form submit handler
+    */
+    const [errors, setErrors] = useState({});
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // prevent page refresh
+        try {
+          await axios.post("/dj-rest-auth/registration/", Data);
+        } catch (error) {
+            setErrors(error.response?.data);  //
+          }
+      };
+    return (
     <>
     <h1> Sign Up</h1>
-    <Form>
+    <Form onSubmit={handleSubmit}>
+        {errors.username?.map((msg, idx) => (
+                <Alert variant="warning" key={idx}>{msg}</Alert>
+                ))}
         <Form.Group controlId="username">
             <Form.Label>Username</Form.Label>
             <Form.Control type="text" placeholder="username" name="username" value={username} onChange={handleChange}/>
         </Form.Group>
-
-        <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password 1</Form.Label>
-            <Form.Control type="password1" placeholder="Password1" name="password1" value={password1} onChange={handleChange}/>
+        {errors.password1?.map((msg, idx) => (
+                <Alert variant="warning" key={idx}>{msg}</Alert>
+                ))}
+        <Form.Group controlId="password1">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" name="password1" value={password1} onChange={handleChange}/>
         </Form.Group>
-        
-        <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password 2</Form.Label>
-            <Form.Control type="password1" placeholder="Password1" name="password2" value={password2} onChange={handleChange}/>
+        {errors.password2?.map((msg, idx) => (
+                <Alert variant="warning" key={idx}>{msg}</Alert>
+                ))}
+        <Form.Group controlId="password2">
+            <Form.Label>Confirm password</Form.Label>
+            <Form.Control type="password" placeholder="Confirm password" name="password2" value={password2} onChange={handleChange}/>
         </Form.Group>
 
         <Button variant="primary" type="submit">
