@@ -42,7 +42,7 @@ const SignUpForm = () => {
     return (
     <Row className="text-center">
       <Col className="my-auto offset-md-2" md={6}>
-        <Container className={`${appStyles.Content} p-4 `}>
+        <Container>
           <h1> Sign up</h1>
           <Form onSubmit={handleSubmit}>
               {errors.username?.map((msg, idx) => (
@@ -50,7 +50,7 @@ const SignUpForm = () => {
                     ))}
               <Form.Group controlId="username">
                   <Form.Label className="d-none">Username</Form.Label>
-                  <Form.Control type="text" placeholder="username" name="username" value={username} onChange={handleChange}/>
+                  <Form.Control type="text" placeholder="Username" name="username" value={username} onChange={handleChange}/>
               </Form.Group>
               {errors.password1?.map((msg, idx) => (
                       <Alert variant="warning" key={idx}>{msg}</Alert>
