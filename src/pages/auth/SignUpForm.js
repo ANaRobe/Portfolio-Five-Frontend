@@ -1,6 +1,9 @@
 import React, {useState} from "react";
-import { Form, Button , Alert}  from "react-bootstrap";
+import { Form, Button , Alert, Row, Col, Container }  from "react-bootstrap";
 import axios from "axios";
+import appStyles from "../../App.module.css";
+import { Link } from "react-router-dom";
+import PasswordCriteria from "../../components/PasswordCriteria";
 
 
 
@@ -37,38 +40,46 @@ const SignUpForm = () => {
           }
       };
     return (
-    <>
-    <h1> Sign Up</h1>
-    <Form onSubmit={handleSubmit}>
-        {errors.username?.map((msg, idx) => (
-                <Alert variant="warning" key={idx}>{msg}</Alert>
-              ))}
-        <Form.Group controlId="username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="username" name="username" value={username} onChange={handleChange}/>
-        </Form.Group>
-        {errors.password1?.map((msg, idx) => (
-                <Alert variant="warning" key={idx}>{msg}</Alert>
-              ))}
-        <Form.Group controlId="password1">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" name="password1" value={password1} onChange={handleChange}/>
-        </Form.Group>
-        {errors.password2?.map((msg, idx) => (
-                <Alert variant="warning" key={idx}>{msg}</Alert>
-              ))}
-        <Form.Group controlId="password2">
-            <Form.Label>Confirm password</Form.Label>
-            <Form.Control type="password" placeholder="Confirm password" name="password2" value={password2} onChange={handleChange}/>
-        </Form.Group> 
-        <Button variant="primary" type="submit">
-            Sign up
-        </Button>
-        {errors.non_field_errors?.map((msg, idx) => (
-                <Alert variant="warning" key={idx}>{msg}</Alert>
-              ))}
-    </Form>
-    </>
+    <Row className="text-center">
+      <Col className="my-auto offset-md-2" md={6}>
+        <Container className={`${appStyles.Content} p-4 `}>
+          <h1> Sign up</h1>
+          <Form onSubmit={handleSubmit}>
+              {errors.username?.map((msg, idx) => (
+                      <Alert variant="warning" key={idx}>{msg}</Alert>
+                    ))}
+              <Form.Group controlId="username">
+                  <Form.Label className="d-none">Username</Form.Label>
+                  <Form.Control type="text" placeholder="username" name="username" value={username} onChange={handleChange}/>
+              </Form.Group>
+              {errors.password1?.map((msg, idx) => (
+                      <Alert variant="warning" key={idx}>{msg}</Alert>
+                    ))}
+              <Form.Group controlId="password1">
+                  <Form.Label className="d-none" >Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" name="password1" value={password1} onChange={handleChange}/>
+              </Form.Group>
+              {errors.password2?.map((msg, idx) => (
+                      <Alert variant="warning" key={idx}>{msg}</Alert>
+                    ))}
+              <Form.Group controlId="password2">
+                  <Form.Label className="d-none">Confirm password</Form.Label>
+                  <Form.Control type="password" placeholder="Confirm password" name="password2" value={password2} onChange={handleChange}/>
+              </Form.Group> 
+              {errors.non_field_errors?.map((msg, idx) => (
+                      <Alert variant="warning" key={idx}>{msg}</Alert>
+                    ))}
+
+               <PasswordCriteria />
+
+              <Button variant="primary" type="submit" className={appStyles.Button}>
+                  Sign up
+              </Button>
+          </Form>
+          <Link className={appStyles.Link} to="/login">Already registered? Click and<span> Sign in </span>!</Link>
+      </Container>
+    </Col>
+  </Row>
   );
 };
 
