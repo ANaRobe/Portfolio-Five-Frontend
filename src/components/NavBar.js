@@ -1,28 +1,33 @@
-import React from "react";
+import React from 'react';
 import { Navbar, Container, Nav } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import {  useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-const setCurrentUser = useSetCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
-const addPost = ( 
-  <NavLink to="/posts/create"><i className="far fa-plus-square"></i></NavLink>
-);
-
-const signOut = async () => {
-  try {
-    await axios.post("dj-rest-auth/logout/");
-    setCurrentUser(null);
-  } catch (error) {
-    // console.log(err);
-  }
-};
+  const {expanded, setExpanded, ref } = useClickOutsideToggle();
+  
+  const addPost = ( 
+    <NavLink to="/posts/create"><i className="far fa-plus-square" expanded ={expanded}></i></NavLink>
+  );
+  /* 
+    Handle Sign out
+  */
+  const signOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (error) {
+      // console.log(err);
+    }
+  };
     
   const loggedInDisplay = (
     <>
@@ -41,7 +46,7 @@ const signOut = async () => {
   );
 
   return (
-        <Navbar className={styles.NavBar} expand="md" fixed="top">
+        <Navbar className={styles.NavBar} expand="md" fixed="top" expanded={expanded}>
           <Container>
             <NavLink to="/">
               <Navbar.Brand>
@@ -49,7 +54,7 @@ const signOut = async () => {
               </Navbar.Brand>
             </NavLink>
             {currentUser && addPost }
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} ref={ref}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto text-left">
                 <NavLink exact className={styles.NavLink} to="/">Home</NavLink>
