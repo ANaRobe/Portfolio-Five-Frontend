@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import { Form, Button, Col, Container, Image }  from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Form, Button, Col, Container, Image, Alert }  from "react-bootstrap";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import cloud from "../../assets/cloud.png";
 import { useHistory } from 'react-router-dom';
+import { axiosReq } from "../../api/axiosDefaults";
 
 /*
 Render input fields to create a post.
  */
 function CreatePostForm() {
   const history = useHistory();
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     title: "",
     content: "",
     image: "",
   });
   const { title, content, image } = data;
+  const imageInput = useRef(null);
 
   /*
   Populate postData strings
@@ -37,6 +40,25 @@ function CreatePostForm() {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (error) {
+      console.log(error);
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
+    }
+  };
+
   const textFields = (
     <div>
       <Form.Group>
@@ -48,6 +70,11 @@ function CreatePostForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((msg, idx) => (
+        <Alert variant="warning" key={idx}>
+          {msg}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
@@ -58,6 +85,11 @@ function CreatePostForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.content?.map((msg, idx) => (
+        <Alert variant="warning" key={idx}>
+          {msg}
+        </Alert>
+      ))}
     </div>
   );
   const imageField = (
@@ -95,8 +127,14 @@ function CreatePostForm() {
           id="image-upload"
           accept="image/*"
           onChange={changeImage}
+          ref={imageInput}
         />
       </Form.Group>
+      {errors?.image?.map((msg, idx) => (
+              <Alert variant="warning" key={idx}>
+                {msg}
+              </Alert>
+            ))}
   </div>
   );
   const formButtons = (
@@ -114,7 +152,7 @@ function CreatePostForm() {
     </span>
   );
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h1 className="d-flex justify-content-center">S H A R E </h1>
         <Container>{textFields}</Container>
         <Container>{imageField}</Container>
