@@ -52,6 +52,7 @@ i:hover {
     color: var(--dark-slate-grey);
     cursor: pointer;
     border-radius: 100px;
+    margin: 5px;
   }
 
 .Button:hover,
