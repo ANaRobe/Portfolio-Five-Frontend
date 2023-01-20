@@ -2,8 +2,11 @@ import React from 'react'
 import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
+import { axiosRes } from '../../api/axiosDefaults';
 
-
+/*
+ Display single post content
+ */
 const Post = (props) => {
     const {
         id,
@@ -16,12 +19,53 @@ const Post = (props) => {
         content,
         image,
         postPage,
+        setPosts,
         
     } = props;
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner 
-  return (
+    
+/*
+   Return like count from API.
+   Increment count by 1.
+*/
+const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post('/likes/', { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
+  /*
+    Return like count from API.
+    Decrement count by 1.
+   */
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+    return (
     <Card>
         <Card.Body >
             <Media className="align-items-center justify-content-between">
@@ -44,11 +88,11 @@ const Post = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className="fas fa-heart" />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLike}>
               <i className="far fa-heart" />
             </span>
           ) : (
