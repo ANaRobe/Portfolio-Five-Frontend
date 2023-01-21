@@ -32,7 +32,7 @@ const NavBar = () => {
   const loggedInDisplay = (
     <>
       <NavLink className={styles.NavLink} to="/feed">Feed</NavLink>
-      <NavLink className={styles.NavLink} to="/liked"></NavLink>
+      <NavLink className={styles.NavLink} to="/liked">Liked</NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={signOut}>Sign out</NavLink>
       <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
       <Avatar className={styles.NavLink} src={currentUser?.profile_image} /></NavLink>
