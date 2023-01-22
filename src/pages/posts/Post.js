@@ -1,9 +1,10 @@
 import React from 'react'
 import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from '../../api/axiosDefaults';
-
+import { DropdownMenu } from "../../components/DropdownMenu";
+import Avatar from "../../components/Avatar";
 /*
  Display single post content
  */
@@ -12,6 +13,8 @@ const Post = (props) => {
         id,
         owner,
         profile_id,
+        profile_image,
+        last_edit,
         comments_count,
         likes_count,
         like_id,
@@ -25,7 +28,20 @@ const Post = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner 
-    
+    const history = useHistory();
+
+    const handleEdit = () => {
+      history.push(`/posts/${id}/edit`);
+    };
+  
+    const handleDelete = async () => {
+      try {
+        await axiosRes.delete(`/posts/${id}/`);
+        history.goBack();
+      } catch (error) {
+        console.log(error);
+      }
+    };
 /*
    Return like count from API.
    Increment count by 1.
@@ -70,9 +86,18 @@ const handleLike = async () => {
         <Card.Body >
             <Media className="align-items-center justify-content-between">
                 <Link to={`/profiles/${profile_id}`}>
+                <Avatar src={profile_image} />
                     {owner}
-                    {is_owner && postPage && "..."}
                 </Link>
+                <div className="d-flex align-items-center">
+                  <span>{last_edit}</span>
+                    {is_owner && postPage && (
+                      <DropdownMenu
+                        handleEdit={handleEdit}
+                        handleDelete={handleDelete}
+                      />
+                    )}
+              </div>
             </Media>
         </Card.Body>
         <Link to={`/posts/${id}`}><Card.Img src={image} alt={title} /></Link>
