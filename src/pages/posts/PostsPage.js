@@ -6,6 +6,8 @@ import Asset from '../../components/Asset';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Post from './Post';
 import NoResults from "../../assets/no_results.png";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/utils';
 
 /*
     Display all posts.
@@ -57,9 +59,18 @@ function PostsPage({ message, filter = '' }) {
            {hasLoaded ? (
           <>
             {posts.results.length ? (
-              posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
-              ))
+              <InfiniteScroll 
+              children={
+                posts.results.map((post) => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))
+              }
+              dataLength={posts.results.length}
+              loader={<Asset spin />}
+              hasMore={!!posts.next}
+              next={() => fetchMoreData(posts, setPosts)}
+              />
+              
             ) : (
               <Container>
                 <Asset src={NoResults} />
