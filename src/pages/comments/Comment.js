@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
 import { DropdownMenu } from "../../components/DropdownMenu";
+import EditCommentForm from "./EditCommentForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -12,7 +13,7 @@ const Comment = (props) => {
   const { profile_id, profile_image, owner, last_edit, text, id, setPost, setComments, } = props;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
-
+  const [showEditForm, setShowEditForm] = useState(false);
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
@@ -41,10 +42,24 @@ const Comment = (props) => {
         <Media.Body className="align-self-center ml-2">
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{last_edit}</span>
-          <p>{text}</p>
+          {showEditForm ? (
+            <EditCommentForm
+              id={id}
+              profile_id={profile_id}
+              text={text}
+              profileImage={profile_image}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <p>{text}</p>
+          )}
         </Media.Body>
-        {is_owner && (
-          <DropdownMenu handleEdit={() => {}} handleDelete={handleDelete} />
+        {is_owner && !showEditForm && (
+          <DropdownMenu
+            handleEdit={() => setShowEditForm(true)}
+            handleDelete={handleDelete}
+          />
         )}
       </Media>
     </div>
