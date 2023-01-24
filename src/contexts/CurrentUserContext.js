@@ -61,7 +61,7 @@ export const CurrentUserProvider = ({ children }) => {
      Response interceptor
    */
     axiosRes.interceptors.response.use(
-      (res) => res,
+      (response) => response,
       async (error) => {
         if (error.response?.status === 401) { 
           try {

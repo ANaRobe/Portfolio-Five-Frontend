@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Form } from 'react-bootstrap';
+import { Container, Form, Row, Col } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
@@ -8,7 +8,7 @@ import Post from './Post';
 import NoResults from "../../assets/no_results.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils';
-
+import PopularProfiles from "../profiles/PopularProfiles";
 /*
     Display all posts.
  */
@@ -46,6 +46,9 @@ function PostsPage({ message, filter = '' }) {
   }, [filter, query, pathname, currentUser]);
 
   return (
+<Row className="h-100">
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <PopularProfiles mobile />
         <Form
           onSubmit={(event) => event.preventDefault()}
         >
@@ -56,6 +59,7 @@ function PostsPage({ message, filter = '' }) {
             placeholder="search posts"
             aria-label="search posts"
           />
+        </Form>
            {hasLoaded ? (
           <>
             {posts.results.length ? (
@@ -80,7 +84,11 @@ function PostsPage({ message, filter = '' }) {
         ) : (
             <Asset spin />
         )}
-        </Form>
+      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
+      </Col>
+    </Row>
  
   );
 }
