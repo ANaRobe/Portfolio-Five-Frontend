@@ -5,6 +5,7 @@ import Asset from "../../components/Asset";
 import cloud from "../../assets/cloud.png";
 import { useHistory } from 'react-router-dom';
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 /*
 Render input fields to create a post.
@@ -19,6 +20,7 @@ function CreatePostForm() {
   });
   const { title, content, image } = data;
   const imageInput = useRef(null);
+  useRedirect("loggedOut");
 
   /*
   Populate postData strings

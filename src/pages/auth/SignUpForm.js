@@ -2,21 +2,23 @@ import React, {useState} from "react";
 import { Form, Button , Alert, Row, Col, Container }  from "react-bootstrap";
 import axios from "axios";
 import appStyles from "../../App.module.css";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import PasswordCriteria from "../../components/PasswordCriteria";
-
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 const SignUpForm = () => {
         /* 
       Store the value of the inputs
     */
+    useRedirect("loggedIn");
     const [Data, setData] = useState({
       username: "",
       password1: "",
       password2: "",
     });
     const { username, password1, password2 } = Data;
+    const history = useHistory();
     /* 
       Handles changes to any of the input fields
     */
@@ -35,6 +37,7 @@ const SignUpForm = () => {
         e.preventDefault(); // prevent page refresh
         try {
           await axios.post("/dj-rest-auth/registration/", Data);
+          history.push("/signin");
         } catch (error) {
             setErrors(error.response?.data);  // Check if response is defined before looking at the data
           }
