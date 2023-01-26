@@ -19,6 +19,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no_results.png";
+import { ProfileEditDropdown } from "../../components/DropdownMenu";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -53,6 +54,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -97,7 +99,7 @@ function ProfilePage() {
               </Button>
             ))}
         </Col>
-        {profile?.content && <Col className="p-3">{profile.content}</Col>}
+        {profile?.about && <Col className="p-3">{profile.about}</Col>}
       </Row>
     </>
   );
@@ -113,7 +115,7 @@ function ProfilePage() {
             <Post key={post.id} {...post} setPosts={setProfilePosts} />
           ))}
           dataLength={profilePosts.results.length}
-          loader={<Asset spinner />}
+          loader={<Asset spin />}
           hasMore={!!profilePosts.next}
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
         />
@@ -130,14 +132,14 @@ function ProfilePage() {
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
+        <Container>
           {hasLoaded ? (
             <>
               {mainProfile}
               {mainProfilePosts}
             </>
           ) : (
-            <Asset spinner />
+            <Asset spin />
           )}
         </Container>
       </Col>
