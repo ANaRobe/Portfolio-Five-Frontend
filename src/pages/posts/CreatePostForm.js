@@ -17,8 +17,9 @@ function CreatePostForm() {
     title: "",
     content: "",
     image: "",
+    category: "",
   });
-  const { title, content, image } = data;
+  const { title, content, image, category} = data;
   const imageInput = useRef(null);
   useRedirect("loggedOut");
 
@@ -49,6 +50,7 @@ function CreatePostForm() {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
+    formData.append("category", category);
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
@@ -77,6 +79,31 @@ function CreatePostForm() {
           {msg}
         </Alert>
       ))}
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+        {errors.category?.map((msg, idx) => 
+        (
+          <Alert variant="warning" key={idx}>
+            {msg}
+          </Alert>
+        ))}
+
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+          aria-label="category"
+        >
+          <option>Category</option>
+          <option value="did_you_know">Did_you_know</option>
+          <option value="tips&how_tos">Tips&how_tos</option>
+          <option value="fun_posts">Fun_posts</option>
+          <option value="recommendations">Recommendations</option>
+
+          <option value="Other">Other</option>
+        </Form.Control>
+      </Form.Group>
       <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control

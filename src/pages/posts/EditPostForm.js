@@ -16,8 +16,9 @@ function EditPostForm() {
     title: "",
     content: "",
     image: "",
+    category: "",
   });
-  const { title, content, image } = data;
+  const { title, content, image, category } = data;
   const imageInput = useRef(null);
   const { id } =  useParams();
   
@@ -30,8 +31,8 @@ Displays in the form fields
     const onMount = async () => {
         try {
             const {data} = await axiosReq.get(`/posts/${id}/`)
-            const {title, content, image, is_owner} = data;
-            is_owner ? setData({title, content, image}) : history.push('/')
+            const {title, content, image, is_owner, category} = data;
+            is_owner ? setData({title, content, image, category}) : history.push('/')
         } catch(error){
             console.log(error)
         }
@@ -65,6 +66,7 @@ Displays in the form fields
 
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("category", category);
     if (imageInput?.current?.files[0]) {
         formData.append("image", imageInput.current.files[0]);
       }
@@ -97,6 +99,31 @@ Displays in the form fields
         </Alert>
       ))}
       <Form.Group>
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+
+        {errors.category?.map((msg, idx) => (
+          <Alert variant="warning" key={idx}>
+            {msg}
+          </Alert>
+        ))}
+
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+          aria-label="category"
+        >
+          <option>Category</option>
+          <option value="Did_you_know">Did_you_know</option>
+          <option value="PTips&how_tos">Tips&how_tos</option>
+          <option value="Fun_posts">Fun_posts</option>
+          <option value="Recommendations">Recommendations</option>
+
+          <option value="Other">Other</option>
+        </Form.Control>
+      </Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
           as="textarea"

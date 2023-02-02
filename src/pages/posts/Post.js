@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Badge, Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from '../../api/axiosDefaults';
@@ -21,6 +21,7 @@ const Post = (props) => {
         title,
         content,
         image,
+        category,
         postPage,
         setPosts,
         
@@ -104,6 +105,11 @@ const handleLike = async () => {
         <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
+        <Card.Text>
+          <Badge variant="secondary">
+            {category}
+          </Badge>
+        </Card.Text>
         <div>
           {is_owner ? (
             <OverlayTrigger

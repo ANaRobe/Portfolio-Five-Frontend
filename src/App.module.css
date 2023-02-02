@@ -46,8 +46,14 @@ i:hover {
   }
 
 .Button {
+    border-color: transparent;
+    font-size: 0.8rem;
+    padding: 4px 9px;
+    margin-left: 2px;
+    min-width: 70px;
     background-color: var(--white);
-    box-shadow: 1px 1px 5px var(--green);
+    border: none;
+    box-shadow: 0px 3px 5px 2px rgb(196, 216, 213);
     font-weight: bold;
     color: var(--dark-slate-grey);
     cursor: pointer;
@@ -59,8 +65,8 @@ i:hover {
 .Button:focus {
   background-color: var(--light) !important;
   color: var(--dark-slate-grey) !important;
-  box-shadow: 1px 1px 5px var(--light) !important;
-  border-color: var(--dark-slate-grey) !important;
+  box-shadow: 5px 5px 5px var(--dark) !important;
+  border-color: var(--dark) !important;
 }
 
 .Link {
