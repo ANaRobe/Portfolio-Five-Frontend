@@ -3,6 +3,30 @@
     border: 1px solid gray;
 }
 
-.NavLink {
-    padding: 10px;
-}
+  .NavLink {
+    padding: 8px;
+  }
+  
+  .Active i {
+    transform: rotate(-15deg) scale(1.1);
+    color: var(--grey);
+  }
+  
+  .NavbarToggle {
+    border: none !important;
+  }
+  
+  .Dropdown:active {
+    background-color: var(--light) !important;
+  }
+  
+  a:hover i {
+    color: grey;
+    transition: color ease-in-out 0.3s;
+    transform: rotate(-15deg) scale(1.1);
+  }
+  
+  a::after {
+    display: none !important;
+  }
+  

@@ -1,0 +1,11 @@
+.Post {
+    background-color: #ffffff;
+    border: 1px solid #dadbdf;
+    border-radius: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.Post figure {
+    margin: 0 0;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navbar, Container, Nav } from "react-bootstrap";
-import Logo from "../assets/Logo.png";
+import { Navbar, Container, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
+import logo from "../assets/Logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
@@ -15,7 +15,15 @@ const NavBar = () => {
   const {expanded, setExpanded, ref } = useClickOutsideToggle();
   
   const addPost = ( 
-    <NavLink to="/posts/create"><i className="far fa-plus-square" expanded ={expanded}></i></NavLink>
+    <OverlayTrigger placement="bottom" overlay={<Tooltip>Share New Post</Tooltip>}>
+            <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/posts/create"
+        >
+            <i className="far fa-plus-square"></i>
+        </NavLink>
+    </OverlayTrigger>
   );
   /* 
     Handle Sign out
@@ -31,35 +39,46 @@ const NavBar = () => {
     
   const loggedInDisplay = (
     <>
-      <NavLink className={styles.NavLink} to="/feed">Feed</NavLink>
-      <NavLink className={styles.NavLink} to="/liked">Liked</NavLink>
-      <NavLink className={styles.NavLink} to="/" onClick={signOut}>Sign out</NavLink>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Feed</Tooltip>}>
+        <NavLink className={styles.NavLink} to="/feed"><i className="fa-solid fa-rss fa-fw"></i></NavLink>
+      </OverlayTrigger>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Liked</Tooltip>}>
+        <NavLink className={styles.NavLink} to="/liked"><i className="fas fa-heart" /></NavLink>
+      </OverlayTrigger>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign Out</Tooltip>}>
+        <NavLink className={styles.NavLink} to="/" onClick={signOut}><i className="fas fa-sign-out-alt"></i></NavLink>
+      </OverlayTrigger>
       <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
       <Avatar className={styles.NavLink} src={currentUser?.profile_image} /></NavLink>
     </>
   );
   const loggedOutDisplay = (
     <>
-      <NavLink className={styles.NavLink} to="/signin">Sign in</NavLink>
-      <NavLink className={styles.NavLink} to="/signup">Sign up</NavLink>
+    <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign In</Tooltip>}>
+      <NavLink className={styles.NavLink} to="/signin"><i className="fa-solid fa-right-to-bracket"></i></NavLink>
+    </OverlayTrigger>  
+    <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign Up</Tooltip>}>
+      <NavLink className={styles.NavLink} to="/signup"><i className="fa-solid fa-user-plus"></i></NavLink>
+    </OverlayTrigger>
     </>
   );
 
   return (
         <Navbar className={styles.NavBar} expand="md" fixed="top" expanded={expanded}>
           <Container>
-            <NavLink to="/">
-              <Navbar.Brand>
-                <img src={Logo} alt="logo" height="40" />
-              </Navbar.Brand>
-            </NavLink>
+          <Navbar.Brand>
+            <img src={logo} alt="Logo" height="30" />
+          </Navbar.Brand>
             {currentUser && addPost }
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} ref={ref}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto text-left">
-                <NavLink exact className={styles.NavLink} to="/">Home</NavLink>
+              <OverlayTrigger placement="bottom" overlay={<Tooltip>Home</Tooltip>}>
+                <NavLink exact className={styles.NavLink} to="/"><i className="fa-solid fa-house"></i></NavLink>
+              </OverlayTrigger>
                 {currentUser ? loggedInDisplay : loggedOutDisplay}
               </Nav>
+              
             </Navbar.Collapse>
           </Container>
         </Navbar>

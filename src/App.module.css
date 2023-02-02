@@ -75,6 +75,12 @@ i:hover {
     margin: 2rem;
   }
 
-  .Link span {
+.Link span {
     color: #e81067;
+}
+
+.Line {
+    width: 200px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 2px 2px rgb(217, 237, 234);
   }
