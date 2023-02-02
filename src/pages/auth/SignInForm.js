@@ -5,6 +5,7 @@ import { useHistory, Link} from "react-router-dom";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from '../../utils/utils';
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -25,6 +26,7 @@ const handleSubmit = async (e) => {
   try {
       const { data } = await axios.post("/dj-rest-auth/login/", Data); 
       setCurrentUser(data.user)
+      setTokenTimestamp(data);
       history.goBack();
   } catch (error) {
       setErrors(error.response?.data); // Check if response is defined before looking at the data

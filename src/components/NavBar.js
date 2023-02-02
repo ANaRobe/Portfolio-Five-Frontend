@@ -7,6 +7,7 @@ import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContex
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import { removeTokenTimestamp } from '../utils/utils';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -32,6 +33,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (error) {
       // console.log(err);
     }
@@ -46,19 +48,19 @@ const NavBar = () => {
         <NavLink className={styles.NavLink} to="/liked"><i className="fas fa-heart" /></NavLink>
       </OverlayTrigger>
       <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign Out</Tooltip>}>
-        <NavLink className={styles.NavLink} to="/" onClick={signOut}><i className="fas fa-sign-out-alt"></i></NavLink>
+        <NavLink className={styles.NavLink} to="/" onClick={signOut} role="link" aria-label="Sign out"><i className="fas fa-sign-out-alt"></i></NavLink>
       </OverlayTrigger>
-      <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
+      <NavLink className={styles.NavLink} role="link" aria-label="Profile" to={`/profiles/${currentUser?.profile_id}`}>
       <Avatar className={styles.NavLink} src={currentUser?.profile_image} /></NavLink>
     </>
   );
   const loggedOutDisplay = (
     <>
     <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign In</Tooltip>}>
-      <NavLink className={styles.NavLink} to="/signin"><i className="fa-solid fa-right-to-bracket"></i></NavLink>
+      <NavLink className={styles.NavLink} role="link" aria-label="Sign in" to="/signin"><i className="fa-solid fa-right-to-bracket"></i></NavLink>
     </OverlayTrigger>  
     <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign Up</Tooltip>}>
-      <NavLink className={styles.NavLink} to="/signup"><i className="fa-solid fa-user-plus"></i></NavLink>
+      <NavLink className={styles.NavLink} role="link" aria-label="Sign up" to="/signup"><i className="fa-solid fa-user-plus"></i></NavLink>
     </OverlayTrigger>
     </>
   );
