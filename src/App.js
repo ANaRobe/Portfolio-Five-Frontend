@@ -15,7 +15,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import EditProfileForm from "./pages/profiles/EditProfileForm";
 import CreateWorkshopForm from './pages/workshops/CreateWorkshopForm';
-
+import WorkshopPage from "./pages/workshops/WorkshopPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -76,6 +76,7 @@ function App() {
                 render={() => <EditProfileForm />}
               />
               <Route exact path="/workshops/create" render={() => <CreateWorkshopForm />} />
+              <Route exact path="/workshops/:id"  render={() => <WorkshopPage />} />
               <Route render={() => <p>Page not found!</p>} />
               
             </Switch>
