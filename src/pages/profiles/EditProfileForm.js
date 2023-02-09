@@ -23,11 +23,12 @@ const EditProfileForm = () => {
   const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
-    name: "",
+    first_name: '',
+    last_name: '',
     about: "",
     image: "",
   });
-  const { name, about, image } = profileData;
+  const { first_name, last_name, about, image } = profileData;
 
   const [errors, setErrors] = useState({});
 
@@ -36,8 +37,8 @@ const EditProfileForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, about, image } = data;
-          setProfileData({ name, about, image });
+          const { first_name, last_name, about, image } = data;
+          setProfileData({ first_name, last_name, about, image });
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -60,7 +61,8 @@ const EditProfileForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append('first_name', first_name);
+    formData.append('last_name', last_name);
     formData.append("about", about);
 
     if (imageFile?.current?.files[0]) {
@@ -82,32 +84,63 @@ const EditProfileForm = () => {
 
   const textFields = (
     <>
-      <Form.Group>
-        <Form.Label>Bio</Form.Label>
-        <Form.Control
-          as="textarea"
-          value={about}
-          onChange={handleChange}
-          name="about"
-          rows={7}
-        />
-      </Form.Group>
+    <Form.Group>
+      <Form.Label>First name:</Form.Label>
+      <Form.Control
+        type="text"
+        name="first_name"
+        value={first_name}
+        onChange={handleChange}
+        aria-label="first name"
+      />
+    </Form.Group>
+    {errors?.first_name?.map((message, idx) => (
+      <Alert variant="danger" key={idx}>
+        {message}
+      </Alert>
+    ))}
 
-      {errors?.about?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-      <Button
-        className={appStyles.Button}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={appStyles.Button} type="submit">
-        save
-      </Button>
-    </>
+    <Form.Group>
+      <Form.Label>Last name:</Form.Label>
+      <Form.Control
+        type="text"
+        name="last_name"
+        value={last_name}
+        onChange={handleChange}
+        aria-label="last name"
+      />
+    </Form.Group>
+    {errors?.last_name?.map((message, idx) => (
+      <Alert variant="danger" key={idx}>
+        {message}
+      </Alert>
+    ))}
+
+    <Form.Group>
+      <Form.Label>About:</Form.Label>
+      <Form.Control
+        as="textarea"
+        value={about}
+        onChange={handleChange}
+        name="about"
+        aria-label="about"
+        rows={5}
+      />
+    </Form.Group>
+    {errors?.about?.map((message, idx) => (
+      <Alert variant="warning" key={idx}>
+        {message}
+      </Alert>
+    ))}
+
+    <Button className={appStyles.Button} onClick={() => history.goBack()}>
+      Cancel
+    </Button>
+
+    <Button className={appStyles.Button} type="submit">
+      S A V E
+    </Button>
+  </>
   );
 
   return (

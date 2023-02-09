@@ -98,10 +98,7 @@ function EditWorkshopForm() {
 
   return (
     <Container>
-      <br />
-      <h2>
-        <strong>Submit an workshop!</strong>
-      </h2>
+      <h1 className="d-flex justify-content-center">u p d a t e </h1>
       <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
