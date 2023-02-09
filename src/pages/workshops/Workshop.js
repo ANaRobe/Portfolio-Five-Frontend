@@ -1,7 +1,9 @@
 import React from 'react';
-import { Container, Media } from 'react-bootstrap';
+import { Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Avatar from '../../components/Avatar';
+import styles from "../../styles/Workshop.module.css";
+import appStyles from"../../App.module.css";
 
 
 function Workshop(props) {
@@ -22,25 +24,33 @@ function Workshop(props) {
   } = props;
 
   return (
-    <Container>
-      <br />
+    <Card className={styles.Workshop}>
+      <Card.Body>
+        <Media className="align-items-center justify-content-between">   
+          <Link to={`workshops/${profile_id}`}>
+            <Avatar src={profile_image} height={30} />
+            <p>By: {owner}</p>
+          </Link>
+          <span class="text-secondary">{last_edit}</span>
+        </Media>
+      </Card.Body>
       <Link to={`/workshops/${id}`}>
-        <h1>{title}</h1>
+        <Card.Body>
+          {title && <Card.Title className={styles.Title}><strong>{title}</strong></Card.Title>}
+          <hr className={appStyles.Line} />
+        </Card.Body>
+        
       </Link>
-      <p>Last updated: {last_edit}</p>
-      <Media>
-        <Link to={`workshops/${profile_id}`}>
-          <Avatar src={profile_image} height={30} />
-          <p>By: {owner}</p>
-        </Link>
-
-      </Media>
-      <p>{content}</p>
+      <Card.Body>
+      
+      <Card.Body>
+        {content && <Card.Text>{content}</Card.Text>}
+      </Card.Body>  
       <p>
-        Date: {date} | Time: {time} | Admission: €{price}
+        <strong>Date:</strong> {date} | <strong>Time:</strong> {time} | <strong>Admission:</strong> € {price}
       </p>
       <p>
-        Location: {location}
+        <strong>Location:</strong> {location}
       </p>
       <p>
         For more information, visit the workshop page:
@@ -50,15 +60,16 @@ function Workshop(props) {
           rel="noreferrer"
           href={link}
         >
-          <strong>H E R E</strong>
+          <span className={appStyles.Button}>H E R E</span>
         </a>
       </p>
       <p>
-        Submitted:
+      <strong>Posted:</strong>
         {' '}
         {created_on}
       </p>
-    </Container>
+      </Card.Body>
+      </Card>
   );
 }
 

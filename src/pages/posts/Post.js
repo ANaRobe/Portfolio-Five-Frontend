@@ -97,7 +97,7 @@ const handleLike = async () => {
                     {is_owner && postPage && (
                       <DropdownMenu
                         handleEdit={handleEdit}
-                        handleDelete={handleDelete}
+                        handleDelete={handleDelete} 
                       />
                     )}
               </div>

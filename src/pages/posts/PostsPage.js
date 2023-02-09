@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils';
 import PopularProfiles from "../profiles/PopularProfiles";
 import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css";
+import styles from "../../styles/SearchBar.module.css";
 import Tips from "../../assets/tips.png";
 import Recommendations from "../../assets/recommend.jpg";
 import DidYouKnow from "../../assets/did_you_know.jpg";
@@ -19,10 +19,11 @@ import All from "../../assets/all.jpg";
 import Other from "../../assets/other.jpg";
 
 
+
 /*
     Display all posts.
  */
-function PostsPage({ message, filter = '' }) {
+function PostsPage({ filter = '' }) {
   const [category, setCategory] = useState(null);
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -128,7 +129,7 @@ function PostsPage({ message, filter = '' }) {
             <Asset spin />
         )}
       </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+      <Col lg={2} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
       </Col>
     </Row>

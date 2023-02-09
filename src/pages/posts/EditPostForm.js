@@ -116,10 +116,10 @@ Displays in the form fields
           aria-label="category"
         >
           <option>Category</option>
-          <option value="Did_you_know">Did_you_know</option>
-          <option value="PTips&how_tos">Tips&how_tos</option>
-          <option value="Fun_posts">Fun_posts</option>
-          <option value="Recommendations">Recommendations</option>
+          <option value="did_you_know">Did you know?</option>
+          <option value="tips&how_tos">Tips & How Tos</option>
+          <option value="fun_posts">Fun Posts</option>
+          <option value="recommendations">Recommendations</option>
 
           <option value="Other">Other</option>
         </Form.Control>

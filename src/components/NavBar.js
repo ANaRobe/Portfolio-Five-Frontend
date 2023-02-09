@@ -16,7 +16,7 @@ const NavBar = () => {
   const {expanded, setExpanded, ref } = useClickOutsideToggle();
   
   const addPost = ( 
-    <OverlayTrigger placement="bottom" overlay={<Tooltip>Share New Post</Tooltip>}>
+    <>    <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E New Post</Tooltip>}>
             <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -25,6 +25,17 @@ const NavBar = () => {
             <i className="far fa-plus-square"></i>
         </NavLink>
     </OverlayTrigger>
+     <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E  New Workshop</Tooltip>}>
+     <NavLink
+ className={styles.NavLink}
+ activeClassName={styles.Active}
+ to="/WORKSHOPS/create"
+ >
+     <i className="fa-regular fa-calendar-plus" />
+ </NavLink>
+</OverlayTrigger>
+</>
+
   );
   /* 
     Handle Sign out
@@ -77,6 +88,9 @@ const NavBar = () => {
               <Nav className="ml-auto text-left">
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Home</Tooltip>}>
                 <NavLink exact className={styles.NavLink} to="/"><i className="fa-solid fa-house"></i></NavLink>
+              </OverlayTrigger>
+              <OverlayTrigger placement="bottom" overlay={<Tooltip>Workshops</Tooltip>}>
+                <NavLink exact className={styles.NavLink} to="/workshops"><i class="fa-solid fa-screwdriver-wrench"></i></NavLink>
               </OverlayTrigger>
                 {currentUser ? loggedInDisplay : loggedOutDisplay}
               </Nav>

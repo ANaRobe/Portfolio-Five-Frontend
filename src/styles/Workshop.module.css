@@ -1,3 +1,13 @@
-h1 {
-    text-transform: uppercase;
+
+.Workshop {
+    width: auto;
+    background-color: #fcfdfc;
+    border: 1px solid #dadbdf;
+    border-radius: 20px;
+    margin-top: 20px;
 }
+
+.Title {
+    transform: rotate(-15deg) scale(1.1);
+    color: var(--grey);
+  }
