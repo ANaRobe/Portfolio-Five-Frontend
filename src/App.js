@@ -17,6 +17,7 @@ import EditProfileForm from "./pages/profiles/EditProfileForm";
 import CreateWorkshopForm from './pages/workshops/CreateWorkshopForm';
 import WorkshopPage from "./pages/workshops/WorkshopPage";
 import WorkshopsPage from "./pages/workshops/WorkshopsPage";
+import EditWorkshopForm from './pages/workshops/EditWorkshopForm';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -79,7 +80,7 @@ function App() {
               <Route exact path="/workshops"  render={() => <WorkshopsPage />} />
               <Route exact path="/workshops/create" render={() => <CreateWorkshopForm />} />
               <Route exact path="/workshops/:id"  render={() => <WorkshopPage />} />
-        
+              <Route exact path="/workshops/:id/edit" render={() => <EditWorkshopForm />} />
               <Route render={() => <p>Page not found!</p>} />
               
             </Switch>

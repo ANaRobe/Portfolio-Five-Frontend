@@ -6,8 +6,3 @@
     border-radius: 20px;
     margin-top: 20px;
 }
-
-.Title {
-    transform: rotate(-15deg) scale(1.1);
-    color: var(--grey);
-  }

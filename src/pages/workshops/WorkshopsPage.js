@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import {Col, Container, Form, Row } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
