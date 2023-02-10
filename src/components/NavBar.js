@@ -16,25 +16,26 @@ const NavBar = () => {
   const {expanded, setExpanded, ref } = useClickOutsideToggle();
   
   const addPost = ( 
-    <>    <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E New Post</Tooltip>}>
-            <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/posts/create"
+    <>    
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E New Post</Tooltip>}>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/posts/create"
         >
-            <i className="far fa-plus-square"></i>
+        <i className="far fa-plus-square"></i>
         </NavLink>
-    </OverlayTrigger>
-     <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E  New Workshop</Tooltip>}>
-     <NavLink
- className={styles.NavLink}
- activeClassName={styles.Active}
- to="/WORKSHOPS/create"
- >
-     <i className="fa-regular fa-calendar-plus" />
- </NavLink>
-</OverlayTrigger>
-</>
+        </OverlayTrigger>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E  New Workshop</Tooltip>}>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/workshops/create"
+        >
+        <i className="fa-regular fa-calendar-plus" />
+        </NavLink>
+      </OverlayTrigger>
+    </>
 
   );
   /* 
@@ -91,10 +92,12 @@ const NavBar = () => {
               </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Workshops</Tooltip>}>
                 <NavLink exact className={styles.NavLink} to="/workshops"><i class="fa-solid fa-screwdriver-wrench"></i></NavLink>
+              </OverlayTrigger>  
+              <OverlayTrigger placement="bottom" overlay={<Tooltip>Contact Us</Tooltip>}>
+               <NavLink className={styles.NavLink}  to="/contact/"><i className="fa-solid fa-envelope"></i></NavLink>
               </OverlayTrigger>
                 {currentUser ? loggedInDisplay : loggedOutDisplay}
               </Nav>
-              
             </Navbar.Collapse>
           </Container>
         </Navbar>
