@@ -2,9 +2,12 @@ import React, {useState} from "react";
 import appStyles from "../../App.module.css";
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
+import { useHistory } from "react-router-dom";
 
 
 const CreateContactForm = () => {
+  useRedirect("loggedOut");
   const [contactData, setContactData] = useState({
     first_name: "",
     last_name: "",
@@ -14,6 +17,7 @@ const CreateContactForm = () => {
 
   const { first_name, last_name, email, content } = contactData;
   const [errors, setErrors] = useState({});
+  const history = useHistory();
 
   const handleChange = (e) => {
     setContactData({
@@ -26,6 +30,7 @@ const CreateContactForm = () => {
     e.preventDefault();
     try {
       await axiosReq.post("/forms/", contactData);
+      history.push("/confirmation");
     } catch (err) {
       setErrors(err.response?.data);
     }

@@ -19,6 +19,9 @@ import WorkshopPage from "./pages/workshops/WorkshopPage";
 import WorkshopsPage from "./pages/workshops/WorkshopsPage";
 import EditWorkshopForm from "./pages/workshops/EditWorkshopForm";
 import CreateContactForm from "./pages/contacts/CreateContactForm";
+import ConfirmationPage from './pages/contacts/ConfirmationPage';
+import NotFound from './components/NotFound';
+
 
 function App() {
   const currentUser = useCurrentUser();
@@ -83,7 +86,8 @@ function App() {
               <Route exact path="/workshops/:id"  render={() => <WorkshopPage />} />
               <Route exact path="/workshops/:id/edit" render={() => <EditWorkshopForm />} />
               <Route exact path="/contact" render={() => <CreateContactForm />} />
-              <Route render={() => <p>Page not found!</p>} />
+              <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
+              <Route render={() => <NotFound />} />
               
             </Switch>
           </Container>
