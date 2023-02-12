@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Container, Form } from 'react-bootstrap';
+import { Container, Form, Row, Col } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
@@ -9,6 +9,7 @@ import NoResults from "../../assets/no_results.png";
 import { fetchMoreData } from '../../utils/utils';
 import Workshop from './Workshop';
 import styles from "../../styles/SearchBar.module.css";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 
 function WorkshopsPage({filter = '' }) {
@@ -44,14 +45,14 @@ function WorkshopsPage({filter = '' }) {
   }, [filter, query, pathname]);
 
   return (
-    <Container>
+    <Row className="h-100">
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
       <Container className="py-2 p-0 p-lg-2 md-">
       <i className={`fas fa-search ${styles.SearchIcon}`} />
       <Form
           className={styles.SearchBar}
           onSubmit={(e) => e.preventDefault()}
-        >
-          
+        >     
           <Form.Control
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -63,7 +64,7 @@ function WorkshopsPage({filter = '' }) {
           <i className={`fa-solid fa-eraser ${styles.Clear}`} onClick={() => setQuery("")} />
         </Form>
       </Container>
-
+      <PopularProfiles mobile />
       {hasLoaded ? (
         <>
           {workshops.results.length ? (
@@ -91,8 +92,11 @@ function WorkshopsPage({filter = '' }) {
           <Asset spin />
         </Container>
       )}
-    </Container>
-    
+      </Col>
+     <Col lg={2} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
+      </Col>
+    </Row>
   );
 }
 

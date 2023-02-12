@@ -11,7 +11,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -46,7 +46,7 @@ const UserPasswordForm = () => {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -87,14 +87,14 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Button
-              className={appStyles.Button}
+              className={btnStyles.Button}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
             <Button
               type="submit"
-              className={appStyles.Button}
+              className={btnStyles.Button}
             >
               save
             </Button>

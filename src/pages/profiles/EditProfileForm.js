@@ -13,7 +13,7 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 const EditProfileForm = () => {
   const currentUser = useCurrentUser();
@@ -40,7 +40,7 @@ const EditProfileForm = () => {
           const { first_name, last_name, about, image } = data;
           setProfileData({ first_name, last_name, about, image });
         } catch (err) {
-          console.log(err);
+          //console.log(err);
           history.push("/");
         }
       } else {
@@ -77,7 +77,7 @@ const EditProfileForm = () => {
       }));
       history.goBack();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -85,7 +85,7 @@ const EditProfileForm = () => {
   const textFields = (
     <>
     <Form.Group>
-      <Form.Label>First name:</Form.Label>
+      <Form.Label>First name</Form.Label>
       <Form.Control
         type="text"
         name="first_name"
@@ -101,7 +101,7 @@ const EditProfileForm = () => {
     ))}
 
     <Form.Group>
-      <Form.Label>Last name:</Form.Label>
+      <Form.Label>Last name</Form.Label>
       <Form.Control
         type="text"
         name="last_name"
@@ -117,7 +117,7 @@ const EditProfileForm = () => {
     ))}
 
     <Form.Group>
-      <Form.Label>About:</Form.Label>
+      <Form.Label>About</Form.Label>
       <Form.Control
         as="textarea"
         value={about}
@@ -133,13 +133,17 @@ const EditProfileForm = () => {
       </Alert>
     ))}
 
-    <Button className={appStyles.Button} onClick={() => history.goBack()}>
-      Cancel
-    </Button>
+  <br />
+        <Row>
+          <Button type="submit" className={btnStyles.Button}>
+            S A V E
+          </Button>
 
-    <Button className={appStyles.Button} type="submit">
-      S A V E
-    </Button>
+          <Button onClick={() => history.goBack()} className={btnStyles.Button}>
+            C a n c e l
+          </Button>
+        </Row>
+        <br />
   </>
   );
 
@@ -161,7 +165,7 @@ const EditProfileForm = () => {
               ))}
               <div>
                 <Form.Label
-                  className={`${appStyles.Button}  btn my-auto`}
+                  className={`${btnStyles.Button}  btn my-auto`}
                   htmlFor="image-upload"
                 >
                   Change the image

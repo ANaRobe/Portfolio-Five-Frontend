@@ -9,7 +9,7 @@ import NoResults from "../../assets/no_results.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils';
 import PopularProfiles from "../profiles/PopularProfiles";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/SearchBar.module.css";
 import Tips from "../../assets/tips.png";
 import Recommendations from "../../assets/recommend.jpg";
@@ -45,7 +45,7 @@ function PostsPage({ filter = '' }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (error) {
-        // console.log(error);
+        //console.log(error);
       }
     };
 
@@ -81,25 +81,24 @@ function PostsPage({ filter = '' }) {
        
       <PopularProfiles mobile />
       <Container
-      className="d-flex justify-content-center navbarContainer my-auto"
     >
         <OverlayTrigger placement="top" overlay={<Tooltip>All</Tooltip>}>
-          <Badge variant="secondary" className={appStyles.Button} onClick={() => setCategory(null)}><img src={All} alt="All" height="40" /></Badge> 
+          <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory(null)}><img src={All} alt="All" height="40" /></Badge> 
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Did you know?</Tooltip>}>
-          <Badge variant="secondary" className={appStyles.Button} onClick={() => setCategory("did_you_know")}><img src={DidYouKnow} alt="Did you know?" height="40" /></Badge>             
+          <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("did_you_know")}><img src={DidYouKnow} alt="Did you know?" height="40" /></Badge>             
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Tips & How Tos</Tooltip>}>
-        <Badge variant="secondary" className={appStyles.Button} onClick={() => setCategory("tips&how_tos")}><img src={Tips} alt="Tips & How Tos" height="40" /></Badge>
+        <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("tips&how_tos")}><img src={Tips} alt="Tips & How Tos" height="40" /></Badge>
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Fun Posts</Tooltip>}>
-        <Badge variant="secondary" className={appStyles.Button} onClick={() => setCategory("fun_posts")}><img src={FunPosts} alt="Fun Posts" height="40" /></Badge>
+        <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("fun_posts")}><img src={FunPosts} alt="Fun Posts" height="40" /></Badge>
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Recommendations</Tooltip>}>
-        <Badge variant="secondary" className={appStyles.Button} onClick={() => setCategory("recommendations")}><img src={Recommendations} alt="Recommendations" height="40" /></Badge>
+        <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("recommendations")}><img src={Recommendations} alt="Recommendations" height="40" /></Badge>
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Other</Tooltip>}>
-        <Badge variant="secondary" className={appStyles.Button} onClick={() => setCategory("other")}><img src={Other} alt="Other" height="40" /></Badge>
+        <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("other")}><img src={Other} alt="Other" height="40" /></Badge>
         </OverlayTrigger>
       </Container>
         <Form onSubmit={(event) => event.preventDefault()}>

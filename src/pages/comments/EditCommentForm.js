@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 function EditCommentForm(props) {
   const { id, text, setShowEditForm, setComments } = props;
@@ -32,7 +32,7 @@ function EditCommentForm(props) {
       }));
       setShowEditForm(false);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -48,14 +48,14 @@ function EditCommentForm(props) {
       </Form.Group>
       <div className="text-right">
         <button
-          className={appStyles.Button}
+          className={btnStyles.Button}
           onClick={() => setShowEditForm(false)}
           type="button"
         >
           cancel
         </button>
         <button
-          className={appStyles.Button}
+          className={btnStyles.Button}
           disabled={!text.trim()}
           type="submit"
         >

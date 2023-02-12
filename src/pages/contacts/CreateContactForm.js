@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import styles from '../../styles/PostForm.module.css';
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -41,7 +43,7 @@ const CreateContactForm = () => {
       
       <Col>
         <Container className={`${appStyles.Content} p-4 `}>
-          <h1>Contact Us</h1>
+          <h1 className="text-center">Contact us</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>First name</Form.Label>
@@ -104,12 +106,11 @@ const CreateContactForm = () => {
               </Alert>
             ))}
 
-            <Button
-            className={appStyles.Button}
-            type="submit"
-            >
-              Submit
-            </Button>
+          <Row className={styles.RowSpacing}>
+          <Button type="submit" className={btnStyles.Button}>
+            S U B M I T
+          </Button>
+          </Row>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 function CreateCommentForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
@@ -35,7 +35,7 @@ function CreateCommentForm(props) {
       }));
       setText("");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -56,7 +56,7 @@ function CreateCommentForm(props) {
         </InputGroup>
       </Form.Group>
       <button
-        className={`${appStyles.Button} btn d-block ml-auto`}
+        className={`${btnStyles.Button} btn d-block ml-auto`}
         disabled={!text.trim()}
         type="submit"
       >

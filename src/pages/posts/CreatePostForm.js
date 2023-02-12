@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Col, Container, Image, Alert }  from "react-bootstrap";
-import appStyles from "../../App.module.css";
+import { Row, Form, Button, Col, Container, Image, Alert }  from "react-bootstrap";
+import btnStyles from "../../styles/Button.module.css";
+import styles from '../../styles/PostForm.module.css';
 import Asset from "../../components/Asset";
 import cloud from "../../assets/cloud.png";
 import { useHistory } from 'react-router-dom';
@@ -56,7 +57,7 @@ function CreatePostForm() {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
       }
@@ -131,7 +132,7 @@ function CreatePostForm() {
             </figure>
             <div>
               <Form.Label
-                className={`${appStyles.Button} btn`}
+                className={`${btnStyles.Button} btn`}
                 htmlFor="image-upload"
               >
                 Change
@@ -144,7 +145,7 @@ function CreatePostForm() {
             htmlFor="image-upload"
           >
           <Col>
-              <figure className={appStyles.Button}>
+              <figure className={btnStyles.Button}>
                   <Image src={cloud} height="100"/>Upload image
               </figure>
             <Asset message="Upload image" />        
@@ -167,18 +168,15 @@ function CreatePostForm() {
   </div>
   );
   const formButtons = (
-    <span>
-      <Form.Group>
-      <Button className={appStyles.Button} type="submit">
-      S H A R E
-      </Button> 
-      <Button className={appStyles.Button}
-        onClick={() => history.goBack()}
-      >
-      C a n c e l
-      </Button>
-      </Form.Group>
-    </span>
+    <Row className={styles.RowSpacing}>
+          <Button type="submit" className={btnStyles.Button}>
+            S H A R E
+          </Button>
+
+          <Button onClick={() => history.goBack()} className={btnStyles.Button}>
+            C a n c e l
+          </Button>
+        </Row>
   );
   return (
     <Form onSubmit={handleSubmit}>

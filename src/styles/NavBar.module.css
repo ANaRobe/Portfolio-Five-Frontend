@@ -19,6 +19,10 @@
   .Dropdown:active {
     background-color: var(--light) !important;
   }
+
+  i{
+    color: rgb(4, 37, 40);
+  }
   
   a:hover i {
     color: grey;

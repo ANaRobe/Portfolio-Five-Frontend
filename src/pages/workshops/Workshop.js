@@ -3,7 +3,7 @@ import { Card, Media } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import Avatar from '../../components/Avatar';
 import styles from "../../styles/Workshop.module.css";
-import appStyles from"../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { DropdownMenu } from '../../components/DropdownMenu';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosRes } from '../../api/axiosDefaults';
@@ -59,7 +59,7 @@ function Workshop(props) {
             <p>By: {owner}</p>
           </Link>
           <div className="d-flex align-items-center">
-            <span class="text-secondary">{last_edit}</span>
+            <span className="text-secondary">{last_edit}</span>
               {is_owner && workshopPage && (
                 <DropdownMenu
                   handleEdit={handleEdit}
@@ -73,7 +73,6 @@ function Workshop(props) {
       <Link to={`/workshops/${id}`}>
         <Card.Body>
           {title && <Card.Title  className="text-center"><strong>{title}</strong></Card.Title>}
-          <hr className={appStyles.Line} />
         </Card.Body>  
       </Link>
       <Card.Body>
@@ -94,7 +93,7 @@ function Workshop(props) {
             rel="noreferrer"
             href={link}
           >
-            <span className={appStyles.Button}>H E R E</span>
+            <span className={btnStyles.Button}>H E R E</span>
           </a>
         </p>
         <p>

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/WorkshopForm.module.css';
-import appStyles from"../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 
 function CreateWorkshopForm() {
@@ -51,9 +51,8 @@ function CreateWorkshopForm() {
     try {
       const { data } = await axiosReq.post('/workshops/', formData);
       history.push(`/workshops/${data.id}`);
-       console.log(formData);
     } catch (error) {
-       console.log(error)
+      //console.log(error)
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
       }
@@ -81,10 +80,10 @@ function CreateWorkshopForm() {
         ))}
 
         <Form.Group>
-          <Form.Label>Content:</Form.Label>
+          <Form.Label>Content</Form.Label>
           <Form.Control
             as="textarea"
-            rows={8}
+            rows={5}
             name="content"
             value={content}
             onChange={handleChange}
@@ -99,7 +98,7 @@ function CreateWorkshopForm() {
 
         <Row className={styles.RowSpacing}>
           <Form.Group>
-            <Form.Label>Location:</Form.Label>
+            <Form.Label>Location</Form.Label>
             <Form.Control
               type="text"
               name="location"
@@ -117,7 +116,7 @@ function CreateWorkshopForm() {
 
         <Row className={styles.RowSpacing}>
           <Form.Group>
-            <Form.Label>Date:</Form.Label>
+            <Form.Label>Date</Form.Label>
             <Form.Control
               type="date"
               name="date"
@@ -133,7 +132,7 @@ function CreateWorkshopForm() {
           ))}
 
           <Form.Group>
-            <Form.Label>Time:</Form.Label>
+            <Form.Label>Time</Form.Label>
             <Form.Control
               type="time"
               name="time"
@@ -149,7 +148,7 @@ function CreateWorkshopForm() {
           ))}
 
           <Form.Group>
-            <Form.Label>Price in €:</Form.Label>
+            <Form.Label>Price in €</Form.Label>
             <Form.Control
               type="text"
               name="price"
@@ -166,7 +165,7 @@ function CreateWorkshopForm() {
         </Row>
 
         <Form.Group>
-          <Form.Label>Workshop URL:</Form.Label>
+          <Form.Label>Workshop URL</Form.Label>
           <Form.Control
             type="url"
             name="link"
@@ -180,18 +179,15 @@ function CreateWorkshopForm() {
             {msg}
           </Alert>
         ))}
-
-        <br />
         <Row className={styles.RowSpacing}>
-          <Button type="submit" className={appStyles.Button}>
+          <Button type="submit" className={btnStyles.Button}>
             S H A R E
           </Button>
 
-          <Button onClick={() => history.goBack()} className={appStyles.Button}>
-            Cancel
+          <Button onClick={() => history.goBack()} className={btnStyles.Button}>
+            C a n c e l
           </Button>
         </Row>
-        <br />
       </Form>
     </Container>
   );

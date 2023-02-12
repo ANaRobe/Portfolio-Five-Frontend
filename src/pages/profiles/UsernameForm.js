@@ -15,6 +15,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -46,7 +47,7 @@ const UsernameForm = () => {
       }));
       history.goBack();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -71,13 +72,13 @@ const UsernameForm = () => {
               </Alert>
             ))}
             <Button
-              className={appStyles.Button}
+              className={btnStyles.Button}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
             <Button
-              className={appStyles.Button}
+              className={btnStyles.Button}
               type="submit"
             >
               save

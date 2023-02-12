@@ -1,5 +1,5 @@
 import React from "react";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -32,14 +32,14 @@ const Profile = (props) => {
           !is_owner &&
           (following_id ? (
             <Button
-              className={appStyles.Button}
+              className={btnStyles.Button}
               onClick={() => handleUnfollow(profile)}
             >
               unfollow
             </Button>
           ) : (
             <Button
-              className={appStyles.Button}
+              className={btnStyles.Button}
               onClick={() => handleFollow(profile)}
             >
               follow

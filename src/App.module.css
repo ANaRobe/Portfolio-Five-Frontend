@@ -4,7 +4,7 @@
 }
 
 .Main {
-    padding-top: 80px;
+    padding-top: 100px;
     margin: auto;
 }
   
@@ -46,29 +46,6 @@ i:hover {
     border: 1px solid white;
   }
 
-.Button {
-    border-color: transparent;
-    font-size: 0.8rem;
-    padding: 4px 9px;
-    margin-left: 2px;
-    min-width: 70px;
-    background-color: var(--white);
-    border: none;
-    box-shadow: 0px 3px 5px 2px rgb(196, 216, 213);
-    font-weight: bold;
-    color: var(--dark-slate-grey);
-    cursor: pointer;
-    border-radius: 100px;
-    margin: 5px;
-  }
-
-.Button:hover,
-.Button:focus {
-  background-color: var(--light) !important;
-  color: var(--dark-slate-grey) !important;
-  box-shadow: 5px 5px 5px var(--dark) !important;
-  border-color: var(--dark) !important;
-}
 
 .Link {
     text-decoration: none;
@@ -79,9 +56,3 @@ i:hover {
 .Link span {
     color: #e81067;
 }
-
-.Line {
-    width: 200px;
-    margin-bottom: 20px;
-    box-shadow: 2px 2px 2px 2px rgb(217, 237, 234);
-  }

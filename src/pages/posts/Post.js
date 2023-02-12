@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from '../../api/axiosDefaults';
 import { DropdownMenu } from "../../components/DropdownMenu";
 import Avatar from "../../components/Avatar";
-import appStyles from"../../App.module.css";
 import styles from "../../styles/Post.module.css";
 /*
  Display single post content
@@ -42,7 +41,7 @@ const Post = (props) => {
         await axiosRes.delete(`/posts/${id}/`);
         history.goBack();
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     };
 /*
@@ -61,7 +60,7 @@ const handleLike = async () => {
         }),
       }));
     } catch (err) {
-      // console.log(err);
+      //console.log(err);
     }
   };
 
@@ -81,7 +80,7 @@ const handleLike = async () => {
         }),
       }));
     } catch (err) {
-      // console.log(err);
+      //console.log(err);
     }
   };
     return (
@@ -93,7 +92,7 @@ const handleLike = async () => {
                     <strong>{owner}</strong>
                 </Link>
                 <div className="d-flex align-items-center">
-                  <span class="text-secondary">{last_edit}</span>
+                  <span className="text-secondary">{last_edit}</span>
                     {is_owner && postPage && (
                       <DropdownMenu
                         handleEdit={handleEdit}
@@ -111,7 +110,6 @@ const handleLike = async () => {
           <Badge variant="secondary">
             {category}
           </Badge>
-          <hr className={appStyles.Line} />
           <div>
             {is_owner ? (
               <OverlayTrigger

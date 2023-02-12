@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Form, Button , Alert, Row, Col, Container }  from "react-bootstrap";
 import axios from "axios";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { useHistory, Link } from "react-router-dom";
 import PasswordCriteria from "../../components/PasswordCriteria";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -75,11 +75,11 @@ const SignUpForm = () => {
 
                <PasswordCriteria />
 
-              <Button variant="primary" type="submit" className={appStyles.Button}>
+              <Button variant="primary" type="submit" className={btnStyles.Button}>
                   Sign up
               </Button>
           </Form>
-          <Link className={appStyles.Link} to="/login">Already registered? Click and<span> Sign in </span>!</Link>
+          <Link className={btnStyles.Link} to="/login">Already registered? Click and<span> Sign in </span>!</Link>
       </Container>
     </Col>
   </Row>

@@ -17,7 +17,7 @@ function WorkshopPage() {
         ]);
         setWorkshop({ results: [workshop] });
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     };
 

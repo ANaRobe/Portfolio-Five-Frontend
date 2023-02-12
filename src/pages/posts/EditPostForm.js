@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Button, Col, Container, Image, Alert }  from "react-bootstrap";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import cloud from "../../assets/cloud.png";
 import { useHistory, useParams } from 'react-router-dom';
@@ -34,7 +34,7 @@ Displays in the form fields
             const {title, content, image, is_owner, category} = data;
             is_owner ? setData({title, content, image, category}) : history.push('/')
         } catch(error){
-            console.log(error)
+          //console.log(error)
         }
     };
     onMount();
@@ -75,7 +75,7 @@ Displays in the form fields
         await axiosReq.put(`/posts/${id}/`, formData);
         history.push(`/posts/${id}`);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
         if (err.response?.status !== 401) {
           setErrors(err.response?.data);
         }
@@ -121,7 +121,7 @@ Displays in the form fields
           <option value="fun_posts">Fun Posts</option>
           <option value="recommendations">Recommendations</option>
 
-          <option value="Other">Other</option>
+          <option value="other">Other</option>
         </Form.Control>
       </Form.Group>
         <Form.Label>Description</Form.Label>
@@ -150,7 +150,7 @@ Displays in the form fields
             </figure>
             <div>
               <Form.Label
-                className={`${appStyles.Button} btn`}
+                className={`${btnStyles.Button} btn`}
                 htmlFor="image-upload"
               >
                 Change
@@ -163,7 +163,7 @@ Displays in the form fields
             htmlFor="image-upload"
           >
           <Col>
-              <figure className={appStyles.Button}>
+              <figure className={btnStyles.Button}>
                   <Image src={cloud} height="100"/>Upload image
               </figure>
             <Asset message="Upload image" />        
@@ -188,10 +188,10 @@ Displays in the form fields
   const formButtons = (
     <span>
       <Form.Group>
-      <Button className={appStyles.Button} type="submit">
+      <Button className={btnStyles.Button} type="submit">
       S A V E
       </Button> 
-      <Button className={appStyles.Button}
+      <Button className={btnStyles.Button}
         onClick={() => history.goBack()}
       >
       C a n c e l

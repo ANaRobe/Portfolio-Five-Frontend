@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 
 import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -50,7 +50,7 @@ function ProfilePage() {
         setProfileWorkshops(profileWorkshops);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchData();
@@ -58,7 +58,6 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -68,7 +67,7 @@ function ProfilePage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.first_name} {profile?.last_name}</h3>
+          <h3 className="m-2"><strong>{profile?.first_name} {profile?.last_name}</strong></h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
@@ -85,18 +84,19 @@ function ProfilePage() {
           </Row>
         </Col>
         <Col lg={3} className="text-lg-right">
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id}/>}
           {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
               <Button
-                className={appStyles.Button}
+                className={btnStyles.Button}
                 onClick={() => handleUnfollow(profile)}
               >
                 unfollow
               </Button>
             ) : (
               <Button
-                className={appStyles.Button}
+                className={btnStyles.Button}
                 onClick={() => handleFollow(profile)}
               >
                 follow
@@ -110,9 +110,7 @@ function ProfilePage() {
 
   const mainProfilePosts = (
     <>
-      <hr />
       <p className="text-center">{profile?.owner}'s posts</p>
-      <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
           children={profilePosts.results.map((post) => (
@@ -134,9 +132,7 @@ function ProfilePage() {
 
   const mainProfileWorkshops = (
     <>
-      <hr />
       <p className="text-center">{profile?.owner}'s workshops</p>
-      <hr />
       {profileWorkshops.results.length ? (
         <InfiniteScroll
           children={profileWorkshops.results.map((workshop) => (

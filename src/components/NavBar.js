@@ -17,7 +17,7 @@ const NavBar = () => {
   
   const addPost = ( 
     <>    
-      <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E New Post</Tooltip>}>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>New Post</Tooltip>}>
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
@@ -26,7 +26,14 @@ const NavBar = () => {
         <i className="far fa-plus-square"></i>
         </NavLink>
         </OverlayTrigger>
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>S H A R E  New Workshop</Tooltip>}>
+    </>
+
+  );
+
+  const addWorkshop = ( 
+    <>    
+
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>New Workshop</Tooltip>}>
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
@@ -38,6 +45,7 @@ const NavBar = () => {
     </>
 
   );
+
   /* 
     Handle Sign out
   */
@@ -47,7 +55,7 @@ const NavBar = () => {
       setCurrentUser(null);
       removeTokenTimestamp();
     } catch (error) {
-      // console.log(err);
+       //console.log(error);
     }
   };
     
@@ -83,20 +91,22 @@ const NavBar = () => {
           <Navbar.Brand>
             <img src={logo} alt="Logo" height="30" />
           </Navbar.Brand>
-            {currentUser && addPost }
+          {currentUser && addPost }
+          {currentUser && addWorkshop }
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} ref={ref}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto text-left">
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Home</Tooltip>}>
                 <NavLink exact className={styles.NavLink} to="/"><i className="fa-solid fa-house"></i></NavLink>
               </OverlayTrigger>
+              {currentUser ? loggedInDisplay : loggedOutDisplay}
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Workshops</Tooltip>}>
-                <NavLink exact className={styles.NavLink} to="/workshops"><i class="fa-solid fa-screwdriver-wrench"></i></NavLink>
+                <NavLink exact className={styles.NavLink} to="/workshops"><i className="fa-solid fa-screwdriver-wrench"></i></NavLink>
               </OverlayTrigger>  
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Contact Us</Tooltip>}>
                <NavLink className={styles.NavLink}  to="/contact/"><i className="fa-solid fa-envelope"></i></NavLink>
               </OverlayTrigger>
-                {currentUser ? loggedInDisplay : loggedOutDisplay}
+               
               </Nav>
             </Navbar.Collapse>
           </Container>

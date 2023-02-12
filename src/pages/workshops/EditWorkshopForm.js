@@ -6,7 +6,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/WorkshopForm.module.css';
-import appStyles from '../../App.module.css'
+import btnStyles from "../../styles/Button.module.css";
 
 
 function EditWorkshopForm() {
@@ -56,7 +56,7 @@ function EditWorkshopForm() {
           link,
         }) : history.push('/');
       } catch (err) {
-        // console.log(err);
+        //console.log(err);
       }
     };
 
@@ -87,9 +87,8 @@ function EditWorkshopForm() {
     try {
       await axiosReq.put(`/workshops/${id}/`, formData);
       history.push(`/workshops/${id}`);
-      // console.log(formData);
     } catch (err) {
-      // console.log(err)
+      //console.log(err)
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -222,18 +221,15 @@ function EditWorkshopForm() {
             {message}
           </Alert>
         ))}
-
-        <br />
-        <Row className={styles.RowSpacing}>
-          <Button type="submit" className={appStyles.Button}>
+        <Row>
+          <Button type="submit" className={btnStyles.Button}>
             S A V E
           </Button>
 
-          <Button onClick={() => history.goBack()} className={appStyles.Button}>
-            Cancel
+          <Button onClick={() => history.goBack()} className={btnStyles.Button}>
+            C a n c e l
           </Button>
         </Row>
-        <br />
       </Form>
     </Container>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button , Alert, Row, Col, Container }  from "react-bootstrap";
 import axios from "axios";
 import { useHistory, Link} from "react-router-dom";
-import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from '../../utils/utils';
@@ -65,11 +65,11 @@ const handleChange = (e) => {
                 {errors.non_field_errors?.map((msg, idx) => (
                         <Alert variant="warning" key={idx}>{msg}</Alert>
                         ))}
-                <Button variant="primary" type="submit" className={appStyles.Button}>
+                <Button variant="primary" type="submit" className={btnStyles.Button}>
                     Sign in
                 </Button>
             </Form>
-            <Link className={appStyles.Link} to="/signup">Don't have an account? <span>Sign up now!</span></Link>
+            <Link className={btnStyles.Link} to="/signup">Don't have an account? <span>Sign up now!</span></Link>
         </Container>
       </Col>
     </Row>

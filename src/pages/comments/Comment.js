@@ -34,7 +34,6 @@ const Comment = (props) => {
   };
   return (
     <div>
-      <hr />
       <Media>
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
