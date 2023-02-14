@@ -7,6 +7,7 @@ import cloud from "../../assets/cloud.png";
 import { useHistory } from 'react-router-dom';
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import appStyles from "../../App.module.css"
 
 /*
 Render input fields to create a post.
@@ -21,6 +22,13 @@ function CreatePostForm() {
     category: "",
   });
   const { title, content, image, category} = data;
+  const categoryOptions = {
+    'did_you_know': 'Did you know?',
+    'tips&how_tos': 'Tips & How Tos',
+    'fun_posts': 'Fun Posts',
+    'recommendations': 'Recommendations',
+    'other': 'Other'
+  };
   const imageInput = useRef(null);
   useRedirect("loggedOut");
 
@@ -88,22 +96,17 @@ function CreatePostForm() {
             {msg}
           </Alert>
         ))}
-
-        <Form.Control
-          as="select"
-          name="category"
-          value={category}
-          onChange={handleChange}
-          aria-label="category"
-        >
-          <option>Category</option>
-          <option value="did_you_know">Did you know?</option>
-          <option value="tips&how_tos">Tips & How Tos</option>
-          <option value="fun_posts">Fun Posts</option>
-          <option value="recommendations">Recommendations</option>
-
-          <option value="Other">Other</option>
-        </Form.Control>
+      <Form.Control
+        as="select"
+        name="category"
+        value={category}
+        onChange={handleChange}
+        aria-label="category"
+      >
+        {Object.entries(categoryOptions).map(([value, text]) => (
+          <option key={value} value={value}>{text}</option>
+        ))}
+      </Form.Control>
       </Form.Group>
       <Form.Group>
         <Form.Label>Description</Form.Label>
@@ -179,12 +182,15 @@ function CreatePostForm() {
         </Row>
   );
   return (
-    <Form onSubmit={handleSubmit}>
-      <h1 className="d-flex justify-content-center">S H A R E </h1>
-        <Container>{textFields}</Container>
-        <Container>{imageField}</Container>
-        <Container>{formButtons}</Container>
-    </Form> 
+    <Container className={appStyles.Content}>
+      <Form onSubmit={handleSubmit}>
+        <h1 className="text-center">share</h1>
+        <h3 className="text-center text-secondary">post</h3>
+          <Container>{textFields}</Container>
+          <Container>{imageField}</Container>
+          <Container>{formButtons}</Container>
+      </Form> 
+    </Container>
   );
 }
 

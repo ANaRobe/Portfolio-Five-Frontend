@@ -31,7 +31,6 @@ const Post = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner 
     const history = useHistory();
-
     const handleEdit = () => {
       history.push(`/posts/${id}/edit`);
     };
@@ -83,6 +82,7 @@ const handleLike = async () => {
       //console.log(err);
     }
   };
+
     return (
     <Card className={styles.Post}>
         <Card.Body >
@@ -105,12 +105,9 @@ const handleLike = async () => {
         <Link to={`/posts/${id}`}><Card.Img src={image} alt={title} /></Link>
         <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
+        {content && <Card.Text>{content}</Card.Text>}     
+        <Badge variant="secondary">{category}</Badge>
         <Card.Text className="text-center">
-          <Badge variant="secondary">
-            {category}
-          </Badge>
-          <div>
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
@@ -139,7 +136,6 @@ const handleLike = async () => {
               <i className="far fa-comments" />
             </Link>
             {comments_count}
-          </div>
         </Card.Text>
       </Card.Body>
     </Card>

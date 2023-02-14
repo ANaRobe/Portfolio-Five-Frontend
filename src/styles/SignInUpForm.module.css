@@ -1,0 +1,9 @@
+.Link {
+    text-decoration: none;
+    display: block;
+    margin: 2rem;
+  }
+
+.Link span {
+    color: #e81067;
+}

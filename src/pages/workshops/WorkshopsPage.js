@@ -93,7 +93,7 @@ function WorkshopsPage({filter = '' }) {
         </Container>
       )}
       </Col>
-     <Col lg={2} className="d-none d-lg-block p-0 p-lg-2">
+     <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
       </Col>
     </Row>

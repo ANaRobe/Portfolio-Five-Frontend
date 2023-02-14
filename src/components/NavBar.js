@@ -62,13 +62,16 @@ const NavBar = () => {
   const loggedInDisplay = (
     <>
       <OverlayTrigger placement="bottom" overlay={<Tooltip>Feed</Tooltip>}>
-        <NavLink className={styles.NavLink} to="/feed"><i className="fa-solid fa-rss fa-fw"></i></NavLink>
+        <NavLink className={styles.NavLink} activeClassName={styles.Active}to="/feed"><i className="fa-solid fa-rss fa-fw"></i></NavLink>
       </OverlayTrigger>
       <OverlayTrigger placement="bottom" overlay={<Tooltip>Liked</Tooltip>}>
         <NavLink className={styles.NavLink} to="/liked"><i className="fas fa-heart" /></NavLink>
       </OverlayTrigger>
       <OverlayTrigger placement="bottom" overlay={<Tooltip>Sign Out</Tooltip>}>
         <NavLink className={styles.NavLink} to="/" onClick={signOut} role="link" aria-label="Sign out"><i className="fas fa-sign-out-alt"></i></NavLink>
+      </OverlayTrigger>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Contact Us</Tooltip>}>
+        <NavLink className={styles.NavLink}  to="/contact/"><i className="fa-solid fa-envelope"></i></NavLink>
       </OverlayTrigger>
       <NavLink className={styles.NavLink} role="link" aria-label="Profile" to={`/profiles/${currentUser?.profile_id}`}>
       <Avatar className={styles.NavLink} src={currentUser?.profile_image} /></NavLink>
@@ -88,9 +91,11 @@ const NavBar = () => {
   return (
         <Navbar className={styles.NavBar} expand="md" fixed="top" expanded={expanded}>
           <Container>
-          <Navbar.Brand>
-            <img src={logo} alt="Logo" height="30" />
-          </Navbar.Brand>
+          <NavLink exact className={styles.NavLink} activeClassName={styles.Active} to="/">
+            <Navbar.Brand>
+              <img src={logo} alt="Logo" height="30" />
+            </Navbar.Brand>
+          </NavLink>
           {currentUser && addPost }
           {currentUser && addWorkshop }
             <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} ref={ref}/>
@@ -99,14 +104,10 @@ const NavBar = () => {
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Home</Tooltip>}>
                 <NavLink exact className={styles.NavLink} to="/"><i className="fa-solid fa-house"></i></NavLink>
               </OverlayTrigger>
-              {currentUser ? loggedInDisplay : loggedOutDisplay}
               <OverlayTrigger placement="bottom" overlay={<Tooltip>Workshops</Tooltip>}>
                 <NavLink exact className={styles.NavLink} to="/workshops"><i className="fa-solid fa-screwdriver-wrench"></i></NavLink>
               </OverlayTrigger>  
-              <OverlayTrigger placement="bottom" overlay={<Tooltip>Contact Us</Tooltip>}>
-               <NavLink className={styles.NavLink}  to="/contact/"><i className="fa-solid fa-envelope"></i></NavLink>
-              </OverlayTrigger>
-               
+              {currentUser ? loggedInDisplay : loggedOutDisplay}
               </Nav>
             </Navbar.Collapse>
           </Container>

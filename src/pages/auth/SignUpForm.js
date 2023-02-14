@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Form, Button , Alert, Row, Col, Container }  from "react-bootstrap";
 import axios from "axios";
 import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/SignInUpForm.module.css";
 import { useHistory, Link } from "react-router-dom";
 import PasswordCriteria from "../../components/PasswordCriteria";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -79,7 +80,7 @@ const SignUpForm = () => {
                   Sign up
               </Button>
           </Form>
-          <Link className={btnStyles.Link} to="/login">Already registered? Click and<span> Sign in </span>!</Link>
+          <Link className={styles.Link} to="/login">Already registered? Click and<span> Sign in </span>!</Link>
       </Container>
     </Col>
   </Row>

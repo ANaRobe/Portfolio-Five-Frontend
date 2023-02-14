@@ -201,7 +201,8 @@ Displays in the form fields
   );
   return (
     <Form onSubmit={handleSubmit}>
-      <h1 className="d-flex justify-content-center">U P D A T E </h1>
+      <h1 className="text-center">update</h1>
+      <h3 className="text-center text-secondary">post</h3>
         <Container>{textFields}</Container>
         <Container>{imageField}</Container>
         <Container>{formButtons}</Container>

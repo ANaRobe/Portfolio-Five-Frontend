@@ -3,6 +3,7 @@ import { Form, Button , Alert, Row, Col, Container }  from "react-bootstrap";
 import axios from "axios";
 import { useHistory, Link} from "react-router-dom";
 import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/SignInUpForm.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from '../../utils/utils';
@@ -69,7 +70,7 @@ const handleChange = (e) => {
                     Sign in
                 </Button>
             </Form>
-            <Link className={btnStyles.Link} to="/signup">Don't have an account? <span>Sign up now!</span></Link>
+            <Link className={styles.Link} to="/signup">Don't have an account? <span>Sign up now!</span></Link>
         </Container>
       </Col>
     </Row>

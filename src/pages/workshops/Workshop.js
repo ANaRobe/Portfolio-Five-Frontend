@@ -54,7 +54,7 @@ function Workshop(props) {
     <Card className={styles.Workshop}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">   
-          <Link to={`workshops/${profile_id}`}>
+        <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} height={30} />
             <p>By: {owner}</p>
           </Link>

@@ -168,7 +168,7 @@ const EditProfileForm = () => {
                   className={`${btnStyles.Button}  btn my-auto`}
                   htmlFor="image-upload"
                 >
-                  Change the image
+                  Change image
                 </Form.Label>
               </div>
               <Form.File

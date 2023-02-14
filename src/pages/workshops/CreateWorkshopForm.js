@@ -5,6 +5,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/WorkshopForm.module.css';
 import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css"
 
 
 function CreateWorkshopForm() {
@@ -60,8 +61,9 @@ function CreateWorkshopForm() {
   };
 
   return (
-    <Container>
-    <h1 className="d-flex justify-content-center">s h a r e </h1>
+    <Container className={appStyles.Content} >
+    <h1 className="text-center">share</h1>
+    <h3 className="text-center text-secondary">workshop</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Subject:</Form.Label>

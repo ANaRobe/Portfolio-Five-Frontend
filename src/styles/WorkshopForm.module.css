@@ -1,5 +1,6 @@
-h1 {
+h1, h3 {
     text-transform: uppercase;
+    letter-spacing: 0.3em;
 }
 
 .RowSpacing {

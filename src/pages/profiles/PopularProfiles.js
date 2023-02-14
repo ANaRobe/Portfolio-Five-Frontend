@@ -3,16 +3,17 @@ import { Container } from "react-bootstrap";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
+import appStyles from "../../App.module.css"
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
 
   return (
     <Container
-    className={`${
-      mobile && "d-lg-none text-center mb-3"
-    }`}
-  >
+      className={`${appStyles.Content} ${
+        mobile && "d-lg-none text-center mb-3"
+      }`}
+    >
     {popularProfiles.results.length ? (
       
       <>
