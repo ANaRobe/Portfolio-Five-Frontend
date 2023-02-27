@@ -81,7 +81,7 @@ function PostsPage({ filter = '' }) {
           <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("did_you_know")}><img src={DidYouKnow} alt="Did you know?" height="30" /></Badge>             
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Tips & How Tos</Tooltip>}>
-          <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("tips&how_tos")}><img src={Tips} alt="Tips & How Tos" height="30" /></Badge>
+          <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("tips_and_how_tos")}><img src={Tips} alt="Tips & How Tos" height="30" /></Badge>
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={<Tooltip>Fun Posts</Tooltip>}>
           <Badge variant="secondary" className={btnStyles.Button} onClick={() => setCategory("fun_posts")}><img src={FunPosts} alt="Fun Posts" height="30" /></Badge>

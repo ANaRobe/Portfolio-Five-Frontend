@@ -12,6 +12,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
+import PasswordCriteria from "../../components/PasswordCriteria";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -86,6 +87,7 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
+             <PasswordCriteria />
             <Button
               className={btnStyles.Button}
               onClick={() => history.goBack()}

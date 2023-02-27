@@ -24,7 +24,7 @@ function CreatePostForm() {
   const { title, content, image, category} = data;
   const categoryOptions = {
     'did_you_know': 'Did you know?',
-    'tips&how_tos': 'Tips & How Tos',
+    'tips_and_how_tos': 'Tips and How Tos',
     'fun_posts': 'Fun Posts',
     'recommendations': 'Recommendations',
     'other': 'Other'

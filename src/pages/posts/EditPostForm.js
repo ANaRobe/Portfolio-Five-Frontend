@@ -117,7 +117,7 @@ Displays in the form fields
         >
           <option>Category</option>
           <option value="did_you_know">Did you know?</option>
-          <option value="tips&how_tos">Tips & How Tos</option>
+          <option value="tips_and_how_tos">Tips & How Tos</option>
           <option value="fun_posts">Fun Posts</option>
           <option value="recommendations">Recommendations</option>
 

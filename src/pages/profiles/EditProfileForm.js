@@ -49,7 +49,7 @@ const EditProfileForm = () => {
     };
 
     onMount();
-  }, [currentUser, history, id]);
+  }, [currentUser?.profile_id, history, id]);
 
   const handleChange = (event) => {
     setProfileData({
