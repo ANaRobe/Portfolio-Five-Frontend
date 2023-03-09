@@ -40,7 +40,6 @@ const Post = (props) => {
         await axiosRes.delete(`/posts/${id}/`);
         history.goBack();
       } catch (error) {
-        //console.log(error);
       }
     };
 /*
@@ -59,7 +58,6 @@ const handleLike = async () => {
         }),
       }));
     } catch (err) {
-      //console.log(err);
     }
   };
 
@@ -79,7 +77,6 @@ const handleLike = async () => {
         }),
       }));
     } catch (err) {
-      //console.log(err);
     }
   };
 
@@ -126,7 +123,7 @@ const handleLike = async () => {
             ) : (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>Log in to like posts!</Tooltip>}
+                overlay={<Tooltip>Sign in to like posts!</Tooltip>}
               >
                 <i className="far fa-heart" />
               </OverlayTrigger>

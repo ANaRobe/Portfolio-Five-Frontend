@@ -47,7 +47,7 @@ Ushare is a social media platform where users with a wide range of interests and
 Users can comment individual posts. As well, they can give them a like and find these speciffic posts on a separate page. 
 When following other users, he/she can see their posts in the feed.
 
-In the Workshops section of the users can share and find ways to enreach their knowledge and practical skills in the fields they are interested in.
+In the Workshops section users can share and find ways to enreach their knowledge and practical skills in the fields they are interested in.
 
 The Ushare has been built using the Django Rest Framework (Python), React.js, Bootstrap.js, HTML, CSS & JavaScript. It provides user authentication and full CRUD functionality.
 
@@ -439,7 +439,8 @@ first.                                                                          
 
 ## Unfixed
 
-No notable bugs have been found to remain.
+Further testing was conducted and noticed that on Iphone mobile the user can not sign in.
+This is issue is known by Code Institute as the tutor support explained.
 
 ***
 
@@ -511,9 +512,7 @@ Modules used in this project can be found in the README for the [DRF API](https:
 
 # Final Deployment
 
-1. **IMPORTANT!** In settings.py in the DRF API, make sure that the 'CLIENT_ORIGIN_DEV' if statement is commented out, and the 'CLIENT_ORIGIN' if statement is present (not the other way around): 
-
-![Final Deployment](src/assets/readme_screenshots/client_origin.png)
+1. **IMPORTANT!** In settings.py in the DRF API, make sure not to run with debug turned on in production!
 
 2. Ensure all finalised code is commited and pushed to Github. 
 
@@ -535,16 +534,28 @@ Modules used in this project can be found in the README for the [DRF API](https:
 # Credits
 
 The Code Institute DRF-API walkthrough was used as an invaluable guide on how to build a DRF-API.
-Ed,  Sean, Oisin and Rebecca from Tutor Support for their assistance.
-Ushare.com and fellow student's projects for:
+Ed, Sean, Oisin and Rebecca from Tutor Support for their assistance.
+Fellow student's projects for:
 
-##Inspiration
+## Inspiration
+
 https://github.com/cornishcoder1/pp5-backend-DRF-the-winding-path
+
 https://github.com/aleksandracodes/ci_pp5_snapfood
+
 https://github.com/CluelessBiker/project5-red-crayon
 
 ## Media
 
 - Ushare Logo  by <a href="https://u-share.com/" title="Ushare">Ushare</a>
+- Most of the Pictures for posts were provided from<a href="https://www.pexels.com/" title="Ushare">Pexels</a>
 
 ## Acknowledgements
+For inpiration in general, for code and advice, I'd like to give thanks to:
+
+Martina Terlevic
+
+Kasia Bogucka
+
+## Sources
+Code Institute Moments walkthrough student template for Gitpod, where all of the tools to get started were preinstalled.
